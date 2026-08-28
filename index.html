@@ -1,0 +1,2627 @@
+<!DOCTYPE html><html lang="ku" dir="rtl"><head><meta charset="UTF-8"><meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+
+«»
+
+<meta name="theme-color" content="#1f5135"><meta name="description" content="سیستەمی شەجەرەی بنەماڵەی بابان / دارەشمانە"><link rel="manifest" href="./manifest.json"><title>شەجەرەی بابان / دارەشمانە</title><style>
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Arial,Tahoma,sans-serif;
+    background:#f3efe3;
+    color:#263b2b;
+}
+
+button,input{
+    font-family:Arial,Tahoma,sans-serif;
+}
+
+button{
+    cursor:pointer;
+}
+
+/* HEADER */
+
+.header{
+    background:#1f5135;
+    color:white;
+    text-align:center;
+    padding:25px 15px;
+    position:relative;
+}
+
+.tree-icon{
+    font-size:80px;
+}
+
+.title{
+    font-size:24px;
+    font-weight:bold;
+    margin-top:8px;
+}
+
+.designer{
+    font-size:14px;
+    margin-top:10px;
+    line-height:1.8;
+}
+
+/* MAIN */
+
+.main{
+    width:94%;
+    max-width:700px;
+    margin:25px auto;
+}
+
+.card{
+    background:white;
+    border-radius:18px;
+    padding:22px;
+    margin-bottom:20px;
+    box-shadow:0 5px 20px rgba(0,0,0,.10);
+}
+
+.file-header{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    text-align:right;
+}
+
+.folder{
+    font-size:38px;
+}
+
+.file-name{
+    font-size:22px;
+    font-weight:bold;
+    color:#1f5135;
+}
+
+.description{
+    color:#777;
+    line-height:1.8;
+    margin:15px 0;
+}
+
+/* SEARCH */
+
+.search{
+    display:flex;
+    gap:8px;
+}
+
+.search input{
+    flex:1;
+    height:50px;
+    border:2px solid #d7dfd8;
+    border-radius:12px;
+    padding:0 14px;
+    font-size:16px;
+    outline:none;
+    background:white;
+    color:#222;
+}
+
+.search input:focus,
+.name-item input:focus,
+.edit-input:focus,
+.password-box input:focus{
+    border-color:#1f5135;
+}
+
+.search button{
+    width:55px;
+    border:none;
+    border-radius:12px;
+    background:#1f5135;
+    color:white;
+    font-size:21px;
+}
+
+/* ACTIONS */
+
+.actions{
+    display:flex;
+    gap:10px;
+    margin-top:18px;
+}
+
+.action{
+    flex:1;
+    min-height:50px;
+    border:none;
+    border-radius:12px;
+    font-size:15px;
+    font-weight:bold;
+}
+
+.add{
+    background:#e5f1e8;
+    color:#1f5135;
+}
+
+.save{
+    background:#edf0f2;
+    color:#37424a;
+}
+
+.print{
+    background:#f3ead7;
+    color:#76591e;
+}
+
+/* PAGES */
+
+.page{
+    display:none;
+}
+
+.page-title{
+    font-size:23px;
+    font-weight:bold;
+    color:#1f5135;
+    margin-bottom:10px;
+    text-align:center;
+}
+
+.page-text{
+    color:#666;
+    line-height:1.8;
+    margin-bottom:20px;
+    text-align:center;
+}
+
+/* NUMBERS */
+
+.numbers{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+}
+
+.number{
+    height:60px;
+    border:2px solid #d7dfd8;
+    border-radius:13px;
+    background:#f8faf8;
+    color:#1f5135;
+    font-size:21px;
+    font-weight:bold;
+}
+
+.number:active{
+    transform:scale(.97);
+}
+
+/* NAMES */
+
+.name-item{
+    margin-bottom:14px;
+    text-align:right;
+}
+
+.name-item label{
+    display:block;
+    font-weight:bold;
+    color:#34543d;
+    margin-bottom:7px;
+}
+
+.name-item input{
+    display:block;
+    width:100%;
+    height:52px;
+    border:2px solid #d7dfd8;
+    border-radius:12px;
+    padding:0 14px;
+    font-size:17px;
+    outline:none;
+    background:#fff;
+    color:#222;
+    direction:rtl;
+}
+
+.save-names{
+    width:100%;
+    height:52px;
+    border:none;
+    border-radius:12px;
+    background:#1f5135;
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    margin-top:10px;
+}
+
+/* PEOPLE */
+
+.people-title{
+    font-size:20px;
+    font-weight:bold;
+    color:#1f5135;
+    margin-bottom:15px;
+    text-align:center;
+}
+
+.people-list{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.person-row{
+    display:flex;
+    align-items:center;
+    gap:7px;
+    width:100%;
+}
+
+.person-button{
+    flex:1;
+    min-height:58px;
+    border:1px solid #d7dfd8;
+    border-radius:13px;
+    background:#f8faf8;
+    color:#263b2b;
+    font-size:17px;
+    font-weight:bold;
+    text-align:right;
+    padding:12px 16px;
+}
+
+.edit-button,
+.delete-button{
+    width:58px;
+    min-height:58px;
+    border:none;
+    border-radius:13px;
+    font-size:14px;
+    font-weight:bold;
+}
+
+.edit-button{
+    background:#e8eef8;
+    color:#31577e;
+}
+
+.delete-button{
+    background:#fae7e7;
+    color:#9b3030;
+}
+
+/* BACK */
+
+.back{
+    width:100%;
+    height:50px;
+    border:none;
+    border-radius:12px;
+    background:#edf0f2;
+    color:#37424a;
+    font-size:15px;
+    font-weight:bold;
+    margin-top:12px;
+}
+
+/* PASSWORD */
+
+.password-box{
+    text-align:center;
+}
+
+.password-box input{
+    width:100%;
+    height:50px;
+    border:2px solid #d7dfd8;
+    border-radius:12px;
+    padding:0 14px;
+    font-size:18px;
+    text-align:center;
+    margin:12px 0;
+    outline:none;
+}
+
+.password-ok{
+    width:100%;
+    height:50px;
+    border:none;
+    border-radius:12px;
+    background:#1f5135;
+    color:white;
+    font-weight:bold;
+    font-size:16px;
+}
+
+.password-cancel{
+    width:100%;
+    height:50px;
+    border:none;
+    border-radius:12px;
+    background:#edf0f2;
+    color:#37424a;
+    font-weight:bold;
+    font-size:16px;
+    margin-top:8px;
+}
+
+/* EDIT */
+
+.edit-input{
+    width:100%;
+    height:52px;
+    border:2px solid #d7dfd8;
+    border-radius:12px;
+    padding:0 14px;
+    font-size:17px;
+    margin-bottom:12px;
+    outline:none;
+}
+
+.edit-save{
+    width:100%;
+    height:50px;
+    border:none;
+    border-radius:12px;
+    background:#1f5135;
+    color:white;
+    font-weight:bold;
+}
+
+/* PRINT CONFIRM */
+
+.print-confirm{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.55);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:9999;
+    padding:20px;
+}
+
+.print-confirm-box{
+    background:white;
+    width:100%;
+    max-width:420px;
+    border-radius:20px;
+    padding:25px;
+    text-align:center;
+}
+
+.print-confirm-icon{
+    font-size:55px;
+}
+
+.print-confirm-title{
+    font-size:22px;
+    font-weight:bold;
+    color:#1f5135;
+    margin-bottom:10px;
+}
+
+.print-confirm-text{
+    color:#666;
+    line-height:1.8;
+    margin-bottom:20px;
+}
+
+.print-confirm-buttons{
+    display:flex;
+    gap:10px;
+}
+
+.confirm-yes,
+.confirm-no{
+    flex:1;
+    height:52px;
+    border:none;
+    border-radius:12px;
+    font-size:16px;
+    font-weight:bold;
+}
+
+.confirm-yes{
+    background:#1f5135;
+    color:white;
+}
+
+.confirm-no{
+    background:#edf0f2;
+    color:#37424a;
+}
+
+/* A4 */
+
+#printPage{
+    display:none;
+}
+
+.a4{
+    width:210mm;
+    min-height:297mm;
+    margin:0 auto;
+    background:white;
+    padding:20mm 18mm;
+    text-align:center;
+    box-shadow:0 5px 25px rgba(0,0,0,.15);
+}
+
+.a4-title{
+    font-size:25px;
+    font-weight:bold;
+    color:#1f5135;
+    margin-bottom:8px;
+}
+
+.a4-subtitle{
+    font-size:16px;
+    color:#666;
+    margin-bottom:25px;
+}
+
+.family-line{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+.family-box{
+    width:80%;
+    min-height:55px;
+    border:2px solid #1f5135;
+    border-radius:12px;
+    padding:14px;
+    font-size:18px;
+    font-weight:bold;
+    color:#263b2b;
+    background:#f8faf8;
+}
+
+.family-arrow{
+    font-size:25px;
+    color:#1f5135;
+    height:38px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.a4-buttons{
+    width:210mm;
+    margin:20px auto;
+    display:flex;
+    gap:10px;
+}
+
+.a4-button{
+    flex:1;
+    height:50px;
+    border:none;
+    border-radius:12px;
+    font-size:16px;
+    font-weight:bold;
+}
+
+.a4-print{
+    background:#1f5135;
+    color:white;
+}
+
+.a4-back{
+    background:#edf0f2;
+    color:#37424a;
+}
+
+/* FOOTER */
+
+.footer{
+    padding:25px;
+    color:#777;
+    font-size:13px;
+    text-align:center;
+}
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+    .actions{
+        flex-direction:column;
+    }
+
+    .numbers{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .a4{
+        width:100%;
+        min-height:auto;
+        padding:25px 15px;
+    }
+
+    .a4-buttons{
+        width:94%;
+    }
+
+    .family-box{
+        width:95%;
+    }
+
+    .edit-button,
+    .delete-button{
+        width:55px;
+        min-width:55px;
+    }
+
+}
+
+/* PRINT */
+
+@media print{
+
+    body{
+        background:white;
+    }
+
+    body *{
+        visibility:hidden;
+    }
+
+    #printPage,
+    #printPage *{
+        visibility:visible;
+    }
+
+    #printPage{
+        display:block !important;
+        position:absolute;
+        left:0;
+        top:0;
+        width:100%;
+    }
+
+    .a4{
+        width:210mm;
+        min-height:297mm;
+        margin:0;
+        padding:20mm 18mm;
+        box-shadow:none;
+    }
+
+    .a4-buttons,
+    .print-confirm{
+        display:none !important;
+    }
+
+}
+
+</style></head><body><header class="header"><div class="tree-icon">
+    🌳
+</div>
+
+<div class="title">
+    شەجەرەی بابان / دارەشمانە
+</div>
+
+<div class="designer">
+    دیزاین و سیستەم / م. ئارام حسین حاجی وەسمان دارەشمانەیی
+</div>
+
+</header><main class="main"><!-- HOME --><div id="homePage" class="page" style="display:block;"><div class="card">
+
+    <div class="file-header">
+
+        <div class="folder">
+            📁
+        </div>
+
+        <div class="file-name">
+            خان بۆداخ
+        </div>
+
+    </div>
+
+    <div class="description">
+        فایلی سەرەکی شەجەرەی بنەماڵە
+    </div>
+
+    <div class="search">
+
+        <input
+            id="searchInput"
+            type="text"
+            placeholder="ناوی سیانی بنووسە و Enter بکە..."
+            autocomplete="off"
+        >
+
+        <button id="searchButton">
+            🔍
+        </button>
+
+    </div>
+
+    <div class="actions">
+
+        <button class="action add" id="mainAdd">
+            ➕ زیادکردنی کەس
+        </button>
+
+        <button class="action save" id="mainSave">
+            💾 سەیڤکردن
+        </button>
+
+        <button class="action print" id="mainPrint">
+            🖨️ پرینت
+        </button>
+
+    </div>
+
+</div>
+
+
+<div class="card" id="mainPeopleCard" style="display:none;">
+
+    <div class="people-title">
+        👥 کەسەکان
+    </div>
+
+    <div class="people-list" id="mainPeopleList"></div>
+
+</div>
+
+</div><!-- NUMBER PAGE --><div id="numberPage" class="page"><div class="card">
+
+    <div class="page-title">
+        👥 زیادکردنی کەس
+    </div>
+
+    <div class="page-text">
+        چەند کەس دەتەوێت زیاد بکەیت؟
+    </div>
+
+    <div class="numbers">
+
+        <button class="number" data-count="1">1</button>
+        <button class="number" data-count="2">2</button>
+        <button class="number" data-count="3">3</button>
+        <button class="number" data-count="4">4</button>
+        <button class="number" data-count="5">5</button>
+        <button class="number" data-count="6">6</button>
+
+    </div>
+
+    <button class="back" id="numberBack">
+        ◀️ گەڕانەوە
+    </button>
+
+</div>
+
+</div><!-- NAMES PAGE --><div id="namesPage" class="page"><div class="card">
+
+    <div class="page-title">
+        👤 ناوی کەسەکان
+    </div>
+
+    <div class="page-text">
+        ناوی کەسەکان بنووسە
+    </div>
+
+    <div id="namesContainer"></div>
+
+    <button class="save-names" id="saveNames">
+        💾 سەیڤکردن
+    </button>
+
+    <button class="back" id="namesBack">
+        ◀️ گەڕانەوە
+    </button>
+
+</div>
+
+</div><!-- PERSON PAGE --><div id="personPage" class="page"><div class="card">
+
+    <div class="file-header">
+
+        <div class="folder">
+            👤
+        </div>
+
+        <div class="file-name" id="selectedPersonName"></div>
+
+    </div>
+
+    <div class="description">
+        کەسانی ئەم کەسە
+    </div>
+
+    <div class="actions">
+
+        <button class="action add" id="personAdd">
+            ➕ زیادکردنی کەس
+        </button>
+
+        <button class="action save" id="personSave">
+            💾 سەیڤکردن
+        </button>
+
+    </div>
+
+</div>
+
+
+<div class="card" id="personPeopleCard" style="display:none;">
+
+    <div class="people-title">
+        👥 کەسان
+    </div>
+
+    <div class="people-list" id="personPeopleList"></div>
+
+</div>
+
+
+<button class="back" id="personBack">
+    ◀️ گەڕانەوە
+</button>
+
+</div><!-- PASSWORD PAGE --><div id="passwordPage" class="page"><div class="card password-box">
+
+    <div class="page-title">
+        🔐 پاسۆرد
+    </div>
+
+    <div class="page-text">
+        بۆ ئەم کارە پاسۆردەکە بنووسە
+    </div>
+
+    <input
+        type="password"
+        id="passwordInput"
+        placeholder="پاسۆرد"
+        autocomplete="off"
+    >
+
+    <button class="password-ok" id="passwordOk">
+        ✓ پشتڕاستکردنەوە
+    </button>
+
+    <button class="password-cancel" id="passwordCancel">
+        ✕ هەڵوەشاندنەوە
+    </button>
+
+</div>
+
+</div><!-- EDIT PAGE --><div id="editPage" class="page"><div class="card">
+
+    <div class="page-title">
+        ✏️ دەستکاریکردنی ناو
+    </div>
+
+    <div class="page-text">
+        ناوی نوێ بنووسە
+    </div>
+
+    <input
+        class="edit-input"
+        id="editInput"
+        type="text"
+        placeholder="ناوی نوێ"
+        autocomplete="off"
+    >
+
+    <button class="edit-save" id="editSave">
+        💾 سەیڤکردنی گۆڕانکاری
+    </button>
+
+    <button class="back" id="editCancel">
+        ◀️ هەڵوەشاندنەوە
+    </button>
+
+</div>
+
+</div><!-- PRINT PAGE --><div id="printPage"><div class="a4">
+
+    <div class="a4-title">
+        شەجەرەی بابان / دارەشمانە
+    </div>
+
+    <div class="a4-subtitle">
+        زنجیرەی بنەماڵەی کەسەکە
+    </div>
+
+    <div class="family-line" id="familyLine"></div>
+
+</div>
+
+
+<div class="a4-buttons">
+
+    <button class="a4-button a4-print" id="a4Print">
+        🖨️ چاپکردنی A4
+    </button>
+
+    <button class="a4-button a4-back" id="a4Back">
+        ◀️ گەڕانەوە
+    </button>
+
+</div>
+
+</div></main><footer class="footer">
+    شەجەرەی بابان / دارەشمانە
+</footer><!-- PRINT CONFIRM --><div class="print-confirm" id="printConfirm"><div class="print-confirm-box">
+
+    <div class="print-confirm-icon">
+        🖨️
+    </div>
+
+    <div class="print-confirm-title">
+        دڵنیایت؟
+    </div>
+
+    <div class="print-confirm-text">
+        دڵنیایت دەتەوێت ئەم زنجیرەی بنەماڵەیە چاپ بکەیت؟
+    </div>
+
+    <div class="print-confirm-buttons">
+
+        <button class="confirm-yes" id="confirmYes">
+            ✓ بەڵێ، چاپ بکە
+        </button>
+
+        <button class="confirm-no" id="confirmNo">
+            ✕ نەخێر
+        </button>
+
+    </div>
+
+</div>
+
+</div><script>
+
+/* ==================================================
+   FAMILY SYSTEM
+================================================== */
+
+const ROOT_ID = "root_khan_bodakh";
+
+let familyData = null;
+
+
+/* ==================================================
+   LOAD DATA
+================================================== */
+
+function loadFamily(){
+
+    try{
+
+        const saved =
+            localStorage.getItem("shajara_family_v2");
+
+        if(saved){
+
+            const parsed =
+                JSON.parse(saved);
+
+            if(
+                parsed &&
+                parsed.people &&
+                parsed.people[ROOT_ID]
+            ){
+
+                return parsed;
+
+            }
+
+        }
+
+    }catch(error){
+
+        console.log(
+            "کێشە لە خوێندنەوەی داتا:",
+            error
+        );
+
+    }
+
+
+    return {
+
+        people:{
+
+            [ROOT_ID]:{
+
+                id:ROOT_ID,
+
+                name:"خان بۆداخ",
+
+                parentId:null,
+
+                children:[]
+
+            }
+
+        }
+
+    };
+
+}
+
+
+familyData = loadFamily();
+
+
+let currentPersonId = ROOT_ID;
+
+let pendingAction = null;
+
+let pendingPersonId = null;
+
+let previousPage = null;
+
+
+/* ==================================================
+   ELEMENTS
+================================================== */
+
+const homePage =
+    document.getElementById("homePage");
+
+const numberPage =
+    document.getElementById("numberPage");
+
+const namesPage =
+    document.getElementById("namesPage");
+
+const personPage =
+    document.getElementById("personPage");
+
+const passwordPage =
+    document.getElementById("passwordPage");
+
+const editPage =
+    document.getElementById("editPage");
+
+const printPage =
+    document.getElementById("printPage");
+
+const namesContainer =
+    document.getElementById("namesContainer");
+
+const mainPeopleCard =
+    document.getElementById("mainPeopleCard");
+
+const mainPeopleList =
+    document.getElementById("mainPeopleList");
+
+const personPeopleCard =
+    document.getElementById("personPeopleCard");
+
+const personPeopleList =
+    document.getElementById("personPeopleList");
+
+const selectedPersonName =
+    document.getElementById("selectedPersonName");
+
+const familyLine =
+    document.getElementById("familyLine");
+
+const passwordInput =
+    document.getElementById("passwordInput");
+
+const editInput =
+    document.getElementById("editInput");
+
+const printConfirm =
+    document.getElementById("printConfirm");
+
+
+/* ==================================================
+   CREATE ID
+================================================== */
+
+function createId(){
+
+    return "person_" +
+        Date.now().toString(36) +
+        "_" +
+        Math.random()
+            .toString(36)
+            .substring(2,10);
+
+}
+
+
+/* ==================================================
+   SAVE
+================================================== */
+
+function saveFamily(){
+
+    try{
+
+        localStorage.setItem(
+            "shajara_family_v2",
+            JSON.stringify(familyData)
+        );
+
+        return true;
+
+    }catch(error){
+
+        console.log(
+            "کێشە لە سەیڤکردنی داتا:",
+            error
+        );
+
+        alert(
+            "❌ نەتوانرا داتا سەیڤ بکرێت."
+        );
+
+        return false;
+
+    }
+
+}
+
+
+/* ==================================================
+   SHOW PAGE
+================================================== */
+
+function showPage(page){
+
+    homePage.style.display = "none";
+
+    numberPage.style.display = "none";
+
+    namesPage.style.display = "none";
+
+    personPage.style.display = "none";
+
+    passwordPage.style.display = "none";
+
+    editPage.style.display = "none";
+
+    printPage.style.display = "none";
+
+    page.style.display = "block";
+
+    window.scrollTo(0,0);
+
+}
+
+
+/* ==================================================
+   GET PERSON
+================================================== */
+
+function getPerson(id){
+
+    return familyData.people[id] || null;
+
+}
+
+
+/* ==================================================
+   CREATE PERSON
+================================================== */
+
+function createPerson(
+    name,
+    parentId
+){
+
+    const id = createId();
+
+    familyData.people[id] = {
+
+        id:id,
+
+        name:name,
+
+        parentId:parentId,
+
+        children:[]
+
+    };
+
+
+    if(parentId){
+
+        const parent =
+            getPerson(parentId);
+
+        if(parent){
+
+            if(!Array.isArray(parent.children)){
+
+                parent.children = [];
+
+            }
+
+            parent.children.push(id);
+
+        }
+
+    }
+
+
+    return id;
+
+}
+
+
+/* ==================================================
+   MAIN PEOPLE
+================================================== */
+
+function renderMainPeople(){
+
+    mainPeopleList.innerHTML = "";
+
+    const root =
+        getPerson(ROOT_ID);
+
+
+    if(
+        !root ||
+        !Array.isArray(root.children) ||
+        root.children.length === 0
+    ){
+
+        mainPeopleCard.style.display = "none";
+
+        return;
+
+    }
+
+
+    mainPeopleCard.style.display = "block";
+
+
+    root.children.forEach(
+        function(id){
+
+            createPersonRow(
+                mainPeopleList,
+                id
+            );
+
+        }
+    );
+
+}
+
+
+/* ==================================================
+   PERSON ROW
+================================================== */
+
+function createPersonRow(
+    container,
+    personId
+){
+
+    const person =
+        getPerson(personId);
+
+
+    if(!person){
+
+        return;
+
+    }
+
+
+    const row =
+        document.createElement("div");
+
+    row.className =
+        "person-row";
+
+
+    const personButton =
+        document.createElement("button");
+
+    personButton.className =
+        "person-button";
+
+    personButton.textContent =
+        "👤 " + person.name;
+
+
+    personButton.onclick =
+        function(){
+
+            openPerson(person.id);
+
+        };
+
+
+    const editButton =
+        document.createElement("button");
+
+    editButton.className =
+        "edit-button";
+
+    editButton.textContent =
+        "✏️";
+
+    editButton.title =
+        "دەستکاری";
+
+
+    editButton.onclick =
+        function(event){
+
+            event.stopPropagation();
+
+            requestPassword(
+                "edit",
+                person.id
+            );
+
+        };
+
+
+    const deleteButton =
+        document.createElement("button");
+
+    deleteButton.className =
+        "delete-button";
+
+    deleteButton.textContent =
+        "🗑️";
+
+    deleteButton.title =
+        "سڕینەوە";
+
+
+    deleteButton.onclick =
+        function(event){
+
+            event.stopPropagation();
+
+            requestPassword(
+                "delete",
+                person.id
+            );
+
+        };
+
+
+    row.appendChild(personButton);
+
+    row.appendChild(editButton);
+
+    row.appendChild(deleteButton);
+
+    container.appendChild(row);
+
+}
+
+
+/* ==================================================
+   OPEN PERSON
+================================================== */
+
+function openPerson(personId){
+
+    const person =
+        getPerson(personId);
+
+
+    if(!person){
+
+        return;
+
+    }
+
+
+    currentPersonId =
+        personId;
+
+
+    selectedPersonName.textContent =
+        person.name;
+
+
+    renderPersonPeople();
+
+    showPage(personPage);
+
+}
+
+
+/* ==================================================
+   PERSON CHILDREN
+================================================== */
+
+function renderPersonPeople(){
+
+    personPeopleList.innerHTML = "";
+
+
+    const person =
+        getPerson(currentPersonId);
+
+
+    if(
+        !person ||
+        !Array.isArray(person.children) ||
+        person.children.length === 0
+    ){
+
+        personPeopleCard.style.display = "none";
+
+        return;
+
+    }
+
+
+    personPeopleCard.style.display = "block";
+
+
+    person.children.forEach(
+        function(id){
+
+            createPersonRow(
+                personPeopleList,
+                id
+            );
+
+        }
+    );
+
+}
+
+
+/* ==================================================
+   MAIN ADD
+================================================== */
+
+document
+.getElementById("mainAdd")
+.addEventListener(
+    "click",
+    function(){
+
+        currentPersonId =
+            ROOT_ID;
+
+        showPage(numberPage);
+
+    }
+);
+
+
+/* ==================================================
+   PERSON ADD
+================================================== */
+
+document
+.getElementById("personAdd")
+.addEventListener(
+    "click",
+    function(){
+
+        showPage(numberPage);
+
+    }
+);
+
+
+/* ==================================================
+   NUMBER SELECT
+================================================== */
+
+document
+.querySelectorAll(".number")
+.forEach(
+    function(button){
+
+        button.addEventListener(
+            "click",
+            function(){
+
+                const count =
+                    Number(
+                        this.dataset.count
+                    );
+
+
+                namesContainer.innerHTML = "";
+
+
+                for(
+                    let i = 1;
+                    i <= count;
+                    i++
+                ){
+
+                    const item =
+                        document.createElement("div");
+
+                    item.className =
+                        "name-item";
+
+
+                    const label =
+                        document.createElement("label");
+
+                    label.textContent =
+                        "ناوی کەسی " + i;
+
+
+                    const input =
+                        document.createElement("input");
+
+                    input.type = "text";
+
+                    input.className =
+                        "person-name";
+
+                    input.placeholder =
+                        "ناوی کەسەکە بنووسە...";
+
+                    input.autocomplete =
+                        "off";
+
+                    input.spellcheck =
+                        false;
+
+
+                    item.appendChild(label);
+
+                    item.appendChild(input);
+
+                    namesContainer.appendChild(item);
+
+                }
+
+
+                showPage(namesPage);
+
+
+                setTimeout(
+                    function(){
+
+                        const first =
+                            namesContainer.querySelector(
+                                ".person-name"
+                            );
+
+                        if(first){
+
+                            first.focus();
+
+                        }
+
+                    },
+                    150
+                );
+
+            }
+        );
+
+    }
+);
+
+
+/* ==================================================
+   SAVE NAMES
+================================================== */
+
+document
+.getElementById("saveNames")
+.addEventListener(
+    "click",
+    function(){
+
+        const inputs =
+            namesContainer.querySelectorAll(
+                ".person-name"
+            );
+
+
+        const names = [];
+
+
+        inputs.forEach(
+            function(input){
+
+                const name =
+                    input.value.trim();
+
+
+                if(name !== ""){
+
+                    names.push(name);
+
+                }
+
+            }
+        );
+
+
+        if(names.length === 0){
+
+            alert(
+                "تکایە لانیکەم یەک ناو بنووسە."
+            );
+
+            return;
+
+        }
+
+
+        const parent =
+            getPerson(currentPersonId);
+
+
+        if(!parent){
+
+            alert(
+                "❌ کەسی باوان نەدۆزرایەوە."
+            );
+
+            return;
+
+        }
+
+
+        names.forEach(
+            function(name){
+
+                createPerson(
+                    name,
+                    currentPersonId
+                );
+
+            }
+        );
+
+
+        if(!saveFamily()){
+
+            return;
+
+        }
+
+
+        if(
+            currentPersonId === ROOT_ID
+        ){
+
+            renderMainPeople();
+
+            showPage(homePage);
+
+        }else{
+
+            renderPersonPeople();
+
+            showPage(personPage);
+
+        }
+
+
+        alert(
+            "✅ ناوەکان بە سەرکەوتوویی سەیڤ کران."
+        );
+
+    }
+);
+
+
+/* ==================================================
+   PASSWORD
+   PASSWORD = 1981
+================================================== */
+
+function requestPassword(
+    action,
+    personId
+){
+
+    pendingAction =
+        action;
+
+    pendingPersonId =
+        personId;
+
+
+    previousPage =
+        currentPersonId === ROOT_ID
+        ? homePage
+        : personPage;
+
+
+    passwordInput.value = "";
+
+    showPage(passwordPage);
+
+
+    setTimeout(
+        function(){
+
+            passwordInput.focus();
+
+        },
+        100
+    );
+
+}
+
+
+document
+.getElementById("passwordOk")
+.addEventListener(
+    "click",
+    function(){
+
+        const password =
+            passwordInput.value;
+
+
+        if(password !== "1981"){
+
+            alert(
+                "❌ پاسۆرد هەڵەیە."
+            );
+
+            passwordInput.value = "";
+
+            passwordInput.focus();
+
+            return;
+
+        }
+
+
+        if(pendingAction === "edit"){
+
+            openEditPage();
+
+        }
+
+
+        if(pendingAction === "delete"){
+
+            deletePerson();
+
+        }
+
+    }
+);
+
+
+passwordInput.addEventListener(
+    "keydown",
+    function(event){
+
+        if(event.key === "Enter"){
+
+            event.preventDefault();
+
+            document
+                .getElementById("passwordOk")
+                .click();
+
+        }
+
+    }
+);
+
+
+document
+.getElementById("passwordCancel")
+.addEventListener(
+    "click",
+    function(){
+
+        showPage(previousPage);
+
+    }
+);
+
+
+/* ==================================================
+   EDIT
+================================================== */
+
+function openEditPage(){
+
+    const person =
+        getPerson(pendingPersonId);
+
+
+    if(!person){
+
+        return;
+
+    }
+
+
+    editInput.value =
+        person.name;
+
+
+    showPage(editPage);
+
+
+    setTimeout(
+        function(){
+
+            editInput.focus();
+
+            editInput.select();
+
+        },
+        100
+    );
+
+}
+
+
+document
+.getElementById("editSave")
+.addEventListener(
+    "click",
+    function(){
+
+        const newName =
+            editInput.value.trim();
+
+
+        if(newName === ""){
+
+            alert(
+                "تکایە ناوێک بنووسە."
+            );
+
+            editInput.focus();
+
+            return;
+
+        }
+
+
+        const person =
+            getPerson(pendingPersonId);
+
+
+        if(!person){
+
+            return;
+
+        }
+
+
+        person.name =
+            newName;
+
+
+        if(!saveFamily()){
+
+            return;
+
+        }
+
+
+        renderMainPeople();
+
+        renderPersonPeople();
+
+
+        if(currentPersonId === person.id){
+
+            selectedPersonName.textContent =
+                person.name;
+
+        }
+
+
+        alert(
+            "✅ ناوەکە بە سەرکەوتوویی چاککرا."
+        );
+
+
+        showPage(previousPage);
+
+    }
+);
+
+
+document
+.getElementById("editCancel")
+.addEventListener(
+    "click",
+    function(){
+
+        showPage(previousPage);
+
+    }
+);
+
+
+/* ==================================================
+   DELETE
+================================================== */
+
+function deletePerson(){
+
+    const person =
+        getPerson(pendingPersonId);
+
+
+    if(!person){
+
+        showPage(previousPage);
+
+        return;
+
+    }
+
+
+    if(person.id === ROOT_ID){
+
+        alert(
+            "❌ خان بۆداخ ناتوانرێت بسڕدرێتەوە."
+        );
+
+        showPage(previousPage);
+
+        return;
+
+    }
+
+
+    const confirmed =
+        confirm(
+            "دڵنیایت دەتەوێت «" +
+            person.name +
+            "» و هەموو کەسانی ژێرەوەی بسڕیتەوە؟"
+        );
+
+
+    if(!confirmed){
+
+        showPage(previousPage);
+
+        return;
+
+    }
+
+
+    const idsToDelete = [];
+
+
+    function collectChildren(id){
+
+        const p =
+            getPerson(id);
+
+
+        if(!p){
+
+            return;
+
+        }
+
+
+        idsToDelete.push(id);
+
+
+        if(Array.isArray(p.children)){
+
+            p.children.forEach(
+                function(childId){
+
+                    collectChildren(childId);
+
+                }
+            );
+
+        }
+
+    }
+
+
+    collectChildren(person.id);
+
+
+    const parent =
+        getPerson(person.parentId);
+
+
+    if(parent && Array.isArray(parent.children)){
+
+        parent.children =
+            parent.children.filter(
+                function(childId){
+
+                    return childId !== person.id;
+
+                }
+            );
+
+    }
+
+
+    idsToDelete.forEach(
+        function(id){
+
+            delete familyData.people[id];
+
+        }
+    );
+
+
+    saveFamily();
+
+
+    renderMainPeople();
+
+    renderPersonPeople();
+
+
+    if(currentPersonId === person.id){
+
+        currentPersonId =
+            ROOT_ID;
+
+        showPage(homePage);
+
+    }else{
+
+        showPage(previousPage);
+
+    }
+
+
+    alert(
+        "✅ کەسەکە و پەیوەندییەکانی سڕانەوە."
+    );
+
+}
+
+
+/* ==================================================
+   BACK NUMBER
+================================================== */
+
+document
+.getElementById("numberBack")
+.addEventListener(
+    "click",
+    function(){
+
+        if(currentPersonId === ROOT_ID){
+
+            showPage(homePage);
+
+        }else{
+
+            showPage(personPage);
+
+        }
+
+    }
+);
+
+
+/* ==================================================
+   BACK NAMES
+================================================== */
+
+document
+.getElementById("namesBack")
+.addEventListener(
+    "click",
+    function(){
+
+        if(currentPersonId === ROOT_ID){
+
+            showPage(homePage);
+
+        }else{
+
+            showPage(personPage);
+
+        }
+
+    }
+);
+
+
+/* ==================================================
+   PERSON BACK
+================================================== */
+
+document
+.getElementById("personBack")
+.addEventListener(
+    "click",
+    function(){
+
+        const person =
+            getPerson(currentPersonId);
+
+
+        if(!person){
+
+            showPage(homePage);
+
+            return;
+
+        }
+
+
+        if(person.id === ROOT_ID){
+
+            showPage(homePage);
+
+            return;
+
+        }
+
+
+        const parent =
+            getPerson(person.parentId);
+
+
+        if(!parent){
+
+            currentPersonId =
+                ROOT_ID;
+
+            showPage(homePage);
+
+            return;
+
+        }
+
+
+        if(parent.id === ROOT_ID){
+
+            currentPersonId =
+                ROOT_ID;
+
+            showPage(homePage);
+
+        }else{
+
+            currentPersonId =
+                parent.id;
+
+            selectedPersonName.textContent =
+                parent.name;
+
+            renderPersonPeople();
+
+            showPage(personPage);
+
+        }
+
+    }
+);
+
+
+/* ==================================================
+   SAVE BUTTONS
+================================================== */
+
+document
+.getElementById("mainSave")
+.addEventListener(
+    "click",
+    function(){
+
+        if(saveFamily()){
+
+            alert(
+                "داتاکان سەیڤ کران."
+            );
+
+        }
+
+    }
+);
+
+
+document
+.getElementById("personSave")
+.addEventListener(
+    "click",
+    function(){
+
+        if(saveFamily()){
+
+            alert(
+                "داتاکان سەیڤ کران."
+            );
+
+        }
+
+    }
+);
+
+
+/* ==================================================
+   ANCESTRY
+================================================== */
+
+function buildAncestry(personId){
+
+    const ancestry = [];
+
+    let currentId =
+        personId;
+
+    const visited =
+        new Set();
+
+
+    while(
+        currentId &&
+        !visited.has(currentId)
+    ){
+
+        visited.add(currentId);
+
+
+        const person =
+            getPerson(currentId);
+
+
+        if(!person){
+
+            break;
+
+        }
+
+
+        ancestry.push(person);
+
+
+        if(currentId === ROOT_ID){
+
+            break;
+
+        }
+
+
+        currentId =
+            person.parentId;
+
+    }
+
+
+    return ancestry;
+
+}
+
+
+/* ==================================================
+   A4
+================================================== */
+
+function showAncestryOnA4(personId){
+
+    const ancestry =
+        buildAncestry(personId);
+
+
+    familyLine.innerHTML = "";
+
+
+    if(ancestry.length === 0){
+
+        alert(
+            "هیچ زانیارییەکی بنەماڵە نەدۆزرایەوە."
+        );
+
+        return;
+
+    }
+
+
+    ancestry.forEach(
+        function(person,index){
+
+            const box =
+                document.createElement("div");
+
+            box.className =
+                "family-box";
+
+            box.textContent =
+                person.name;
+
+
+            familyLine.appendChild(box);
+
+
+            if(index < ancestry.length - 1){
+
+                const arrow =
+                    document.createElement("div");
+
+                arrow.className =
+                    "family-arrow";
+
+                arrow.textContent =
+                    "↓";
+
+
+                familyLine.appendChild(arrow);
+
+            }
+
+        }
+    );
+
+
+    showPage(printPage);
+
+}
+
+
+/* ==================================================
+   SEARCH
+================================================== */
+
+function doSearch(){
+
+    const input =
+        document.getElementById("searchInput");
+
+
+    const searchName =
+        input.value.trim();
+
+
+    if(searchName === ""){
+
+        alert(
+            "تکایە ناوێک بنووسە."
+        );
+
+        input.focus();
+
+        return;
+
+    }
+
+
+    const lowerSearch =
+        searchName.toLowerCase();
+
+
+    const matches = [];
+
+
+    Object.values(familyData.people)
+        .forEach(
+            function(person){
+
+                if(
+                    person.name
+                        .toLowerCase()
+                        .includes(lowerSearch)
+                ){
+
+                    matches.push(person);
+
+                }
+
+            }
+        );
+
+
+    if(matches.length === 0){
+
+        alert(
+            "ئەم ناوە لە شەجەرەکەدا نەدۆزرایەوە."
+        );
+
+        return;
+
+    }
+
+
+    if(matches.length === 1){
+
+        showAncestryOnA4(
+            matches[0].id
+        );
+
+        return;
+
+    }
+
+
+    familyLine.innerHTML = "";
+
+
+    matches.forEach(
+        function(person,index){
+
+            const heading =
+                document.createElement("div");
+
+
+            heading.style.fontSize =
+                "20px";
+
+            heading.style.fontWeight =
+                "bold";
+
+            heading.style.color =
+                "#1f5135";
+
+            heading.style.marginTop =
+                index === 0
+                ? "0"
+                : "30px";
+
+
+            heading.textContent =
+                "👤 " + person.name;
+
+
+            familyLine.appendChild(heading);
+
+
+            const ancestry =
+                buildAncestry(person.id);
+
+
+            ancestry.forEach(
+                function(p,i){
+
+                    const box =
+                        document.createElement("div");
+
+                    box.className =
+                        "family-box";
+
+                    box.textContent =
+                        p.name;
+
+
+                    familyLine.appendChild(box);
+
+
+                    if(i < ancestry.length - 1){
+
+                        const arrow =
+                            document.createElement("div");
+
+                        arrow.className =
+                            "family-arrow";
+
+                        arrow.textContent =
+                            "↓";
+
+
+                        familyLine.appendChild(arrow);
+
+                    }
+
+                }
+            );
+
+        }
+    );
+
+
+    showPage(printPage);
+
+}
+
+
+/* ==================================================
+   SEARCH BUTTON
+================================================== */
+
+document
+.getElementById("searchButton")
+.addEventListener(
+    "click",
+    function(){
+
+        doSearch();
+
+    }
+);
+
+
+/* ==================================================
+   SEARCH ENTER
+================================================== */
+
+document
+.getElementById("searchInput")
+.addEventListener(
+    "keydown",
+    function(event){
+
+        if(event.key === "Enter"){
+
+            event.preventDefault();
+
+            doSearch();
+
+        }
+
+    }
+);
+
+
+/* ==================================================
+   MAIN PRINT
+================================================== */
+
+document
+.getElementById("mainPrint")
+.addEventListener(
+    "click",
+    function(){
+
+        const searchInput =
+            document.getElementById("searchInput");
+
+
+        if(searchInput.value.trim() === ""){
+
+            alert(
+                "سەرەتا ناوی سیانی بنووسە."
+            );
+
+            searchInput.focus();
+
+            return;
+
+        }
+
+
+        doSearch();
+
+    }
+);
+
+
+/* ==================================================
+   PRINT CONFIRM
+================================================== */
+
+function showPrintConfirmation(){
+
+    printConfirm.style.display =
+        "flex";
+
+}
+
+
+function hidePrintConfirmation(){
+
+    printConfirm.style.display =
+        "none";
+
+}
+
+
+document
+.getElementById("a4Print")
+.addEventListener(
+    "click",
+    function(){
+
+        showPrintConfirmation();
+
+    }
+);
+
+
+document
+.getElementById("confirmYes")
+.addEventListener(
+    "click",
+    function(){
+
+        hidePrintConfirmation();
+
+
+        setTimeout(
+            function(){
+
+                window.print();
+
+            },
+            150
+        );
+
+    }
+);
+
+
+document
+.getElementById("confirmNo")
+.addEventListener(
+    "click",
+    function(){
+
+        hidePrintConfirmation();
+
+    }
+);
+
+
+document
+.getElementById("a4Back")
+.addEventListener(
+    "click",
+    function(){
+
+        showPage(homePage);
+
+    }
+);
+
+
+/* ==================================================
+   START
+================================================== */
+
+renderMainPeople();
+
+
+/* ==================================================
+   SERVICE WORKER / PWA
+================================================== */
+
+if("serviceWorker" in navigator){
+
+    window.addEventListener(
+        "load",
+        function(){
+
+            navigator.serviceWorker
+                .register("./service-worker.js")
+                .then(
+                    function(){
+
+                        console.log(
+                            "PWA Service Worker registered"
+                        );
+
+                    }
+                )
+                .catch(
+                    function(error){
+
+                        console.log(
+                            "Service Worker error:",
+                            error
+                        );
+
+                    }
+                );
+
+        }
+    );
+
+}
+
+</script></body></html>
