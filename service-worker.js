@@ -1,20 +1,27 @@
-const CACHE_NAME = "shajara-baban-v3";
+const CACHE_NAME = "shajara-baban-v4";
 
 const FILES_TO_CACHE = [
     "./",
     "./index.html",
-    "./manifest.json"
+    "./manifest.json",
+    "./service-worker.js"
 ];
+
+
+/* ================================
+   INSTALL
+================================ */
 
 self.addEventListener("install", event => {
 
     event.waitUntil(
 
-        caches.open(CACHE_NAME).then(cache => {
+        caches.open(CACHE_NAME)
+            .then(cache => {
 
-            return cache.addAll(FILES_TO_CACHE);
+                return cache.addAll(FILES_TO_CACHE);
 
-        })
+            })
 
     );
 
@@ -23,21 +30,26 @@ self.addEventListener("install", event => {
 });
 
 
+/* ================================
+   ACTIVATE
+================================ */
+
 self.addEventListener("activate", event => {
 
     event.waitUntil(
 
-        caches.keys().then(keys => {
+        caches.keys()
+            .then(keys => {
 
-            return Promise.all(
+                return Promise.all(
 
-                keys
-                .filter(key => key !== CACHE_NAME)
-                .map(key => caches.delete(key))
+                    keys
+                        .filter(key => key !== CACHE_NAME)
+                        .map(key => caches.delete(key))
 
-            );
+                );
 
-        })
+            })
 
     );
 
@@ -46,15 +58,38 @@ self.addEventListener("activate", event => {
 });
 
 
+/* ================================
+   FETCH
+================================ */
+
 self.addEventListener("fetch", event => {
+
+    if (event.request.method !== "GET") {
+        return;
+    }
 
     event.respondWith(
 
-        caches.match(event.request).then(response => {
+        caches.match(event.request)
+            .then(cachedResponse => {
 
-            return response || fetch(event.request);
+                if (cachedResponse) {
+                    return cachedResponse;
+                }
 
-        })
+                return fetch(event.request)
+                    .then(networkResponse => {
+
+                        return networkResponse;
+
+                    })
+                    .catch(() => {
+
+                        return caches.match("./index.html");
+
+                    });
+
+            })
 
     );
 
